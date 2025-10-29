@@ -25,6 +25,7 @@ import (
 	"slices"
 	"strings"
 	"testing"
+	"testing/iotest"
 
 	"github.com/stretchr/testify/require"
 )
@@ -390,12 +391,11 @@ func TestEncodeDecodeResponseRoundTrip(t *testing.T) {
 			require.False(t, msg.IsRequest())
 			require.True(t, msg.IsResponse())
 
-			respBytes, err := io.ReadAll(msg)
+			wantBytes := tc.wantEncoded()
+			err = iotest.TestReader(msg, wantBytes)
 			require.NoError(t, err)
 
-			require.Equal(t, tc.wantEncoded(), respBytes)
-
-			encReader := bytes.NewReader(respBytes)
+			encReader := bytes.NewReader(wantBytes)
 			got, err := dec.DecodeResponse(t.Context(), encReader)
 			require.NoError(t, err)
 
@@ -408,7 +408,7 @@ func TestEncodeDecodeResponseRoundTrip(t *testing.T) {
 
 			// also test the truncated encodings.
 			for _, truncate := range tc.truncate {
-				truncatedBytes := respBytes[:len(respBytes)-truncate]
+				truncatedBytes := wantBytes[:len(wantBytes)-truncate]
 
 				got, err := dec.DecodeResponse(t.Context(), bytes.NewReader(truncatedBytes))
 				require.NoError(t, err, truncate)
