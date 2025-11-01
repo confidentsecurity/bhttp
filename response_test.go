@@ -109,7 +109,7 @@ func newResponseTestCases() map[string]responseRoundTripTest {
 		return enc
 	}
 
-	// hello world response (short response with known-lenght body)
+	// hello world response (short response with known-length body)
 	newHelloWorldOriginal := func() *http.Response {
 		return &http.Response{
 			StatusCode: http.StatusCreated,
