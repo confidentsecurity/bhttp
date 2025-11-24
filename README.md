@@ -25,7 +25,7 @@ Similarly, this package needs to do some processing of these types before they c
 ## Installation
 
 ```bash
-go get github.com/confidentsecurity/bhttp
+go get github.com/openpcc/bhttp
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ go get github.com/confidentsecurity/bhttp
 ```go
 import (
     "bytes"
-    "github.com/confidentsecurity/bhttp"
+    "github.com/openpcc/bhttp"
     "net/http"
 )
 
@@ -66,7 +66,7 @@ if err != nil {
 ```go
 import (
     "bytes"
-    "github.com/confidentsecurity/bhttp"
+    "github.com/openpcc/bhttp"
     "net/http"
 )
 
@@ -96,7 +96,7 @@ Encoding and decoding http.Response types work much the same
 ```go
 import (
     "bytes"
-    "github.com/confidentsecurity/bhttp"
+    "github.com/openpcc/bhttp"
     "net/http"
 )
 

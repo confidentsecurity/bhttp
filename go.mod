@@ -1,4 +1,4 @@
-module github.com/confidentsecurity/bhttp
+module github.com/openpcc/bhttp
 
 go 1.25.4
 
